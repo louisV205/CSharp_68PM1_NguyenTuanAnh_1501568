@@ -1,0 +1,11 @@
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\bin\Debug\QLSINHVIEN.exe.config
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\bin\Debug\QLSINHVIEN.exe
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\bin\Debug\QLSINHVIEN.pdb
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.csproj.AssemblyReference.cache
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.main.resources
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.Properties.Resources.resources
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.csproj.GenerateResource.cache
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.exe
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.pdb
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.exe.config
