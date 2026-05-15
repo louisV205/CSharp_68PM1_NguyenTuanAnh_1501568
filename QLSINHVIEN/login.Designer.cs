@@ -1,6 +1,6 @@
 ﻿namespace QLSINHVIEN
 {
-    partial class main
+    partial class login
     {
         /// <summary>
         /// Required designer variable.
