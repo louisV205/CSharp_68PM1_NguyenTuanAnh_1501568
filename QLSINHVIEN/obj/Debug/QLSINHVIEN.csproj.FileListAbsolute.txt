@@ -8,5 +8,7 @@ C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QL
 C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.exe
 C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.pdb
 C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.exe.config
-C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\WindowsFormsApp.Quanlysinhvien.resources
 C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.login.resources
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.UCQLSV.resources
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.main.resources
+C:\Users\ADMIN\CSharp\CSharp_68PM1_NguyenHaiDang_0008068\QLSINHVIEN\obj\Debug\QLSINHVIEN.UCQLLH.resources

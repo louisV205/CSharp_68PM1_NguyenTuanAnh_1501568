@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApp;
+using QLSINHVIEN;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -48,9 +48,9 @@ namespace QLSINHVIEN
             {
                 MessageBox.Show("Đăng nhập thành công");
 
-                Quanlysinhvien frm = new Quanlysinhvien();
+               
 
-                frm.Show();
+                
 
                 this.Hide();
             }
