@@ -13,9 +13,12 @@ namespace QLSINHVIEN
 {
     public partial class UCQLLH : UserControl
     {
+        databaseDataContext db = new databaseDataContext();
         public UCQLLH()
         {
             InitializeComponent();
+            List<lophoc> dsLopHoc = db.lophocs.ToList();
+            dataGridView1.DataSource = dsLopHoc;    
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -317,5 +320,18 @@ namespace QLSINHVIEN
         {
 
         }
+        public void loadlop()
+        {
+            var ds = from l in db.lophocs
+                     select new
+                     {
+                         l.id,
+                         l.malop,
+                         l.tenlop,
+                         l.ghichu
+                     };
+            dataGridView1.DataSource = ds.ToList();
+        }
     }
+
 }

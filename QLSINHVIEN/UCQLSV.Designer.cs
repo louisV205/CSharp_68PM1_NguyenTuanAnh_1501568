@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.box_lophoc = new System.Windows.Forms.ComboBox();
+            this.box_gioitinh = new System.Windows.Forms.ComboBox();
+            this.date_ngaysinh = new System.Windows.Forms.DateTimePicker();
             this.txt_name = new System.Windows.Forms.TextBox();
             this.txt_mssv = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -56,34 +56,36 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox2
+            // box_lophoc
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.box_lophoc.FormattingEnabled = true;
+            this.box_lophoc.Location = new System.Drawing.Point(10, 403);
+            this.box_lophoc.Margin = new System.Windows.Forms.Padding(2);
+            this.box_lophoc.Name = "box_lophoc";
+            this.box_lophoc.Size = new System.Drawing.Size(364, 26);
+            this.box_lophoc.TabIndex = 9;
+            this.box_lophoc.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // box_gioitinh
+            // 
+            this.box_gioitinh.FormattingEnabled = true;
+            this.box_gioitinh.Items.AddRange(new object[] {
             "nam",
             "nữ"});
-            this.comboBox2.Location = new System.Drawing.Point(10, 403);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(364, 26);
-            this.comboBox2.TabIndex = 9;
+            this.box_gioitinh.Location = new System.Drawing.Point(10, 316);
+            this.box_gioitinh.Margin = new System.Windows.Forms.Padding(2);
+            this.box_gioitinh.Name = "box_gioitinh";
+            this.box_gioitinh.Size = new System.Drawing.Size(365, 26);
+            this.box_gioitinh.TabIndex = 8;
+            this.box_gioitinh.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // comboBox1
+            // date_ngaysinh
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 316);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(365, 26);
-            this.comboBox1.TabIndex = 8;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(10, 228);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(365, 24);
-            this.dateTimePicker1.TabIndex = 7;
+            this.date_ngaysinh.Location = new System.Drawing.Point(10, 228);
+            this.date_ngaysinh.Margin = new System.Windows.Forms.Padding(2);
+            this.date_ngaysinh.Name = "date_ngaysinh";
+            this.date_ngaysinh.Size = new System.Drawing.Size(365, 24);
+            this.date_ngaysinh.TabIndex = 7;
             // 
             // txt_name
             // 
@@ -158,9 +160,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.box_lophoc);
+            this.groupBox1.Controls.Add(this.box_gioitinh);
+            this.groupBox1.Controls.Add(this.date_ngaysinh);
             this.groupBox1.Controls.Add(this.txt_name);
             this.groupBox1.Controls.Add(this.txt_mssv);
             this.groupBox1.Controls.Add(this.label5);
@@ -236,6 +238,7 @@
             this.btn_add.TabIndex = 60;
             this.btn_add.Text = "Thêm";
             this.btn_add.UseVisualStyleBackColor = false;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // dataGridView1
             // 
@@ -351,9 +354,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox box_lophoc;
+        private System.Windows.Forms.ComboBox box_gioitinh;
+        private System.Windows.Forms.DateTimePicker date_ngaysinh;
         private System.Windows.Forms.TextBox txt_name;
         private System.Windows.Forms.TextBox txt_mssv;
         private System.Windows.Forms.Label label5;
