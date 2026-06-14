@@ -11,6 +11,11 @@ namespace QLSINHVIEN
     {
         databaseDataContext db = new databaseDataContext();
         int idSinhVienDangChon = 0;
+        int trangHienTai = 1;
+        int soDongMoiTrang = 3;
+        int tongSoTrang = 1;
+        int tongSoBanGhi = 0;
+        string tuKhoaTimKiem = "";
         public UCQLSV()
         {
             InitializeComponent();
@@ -19,12 +24,17 @@ namespace QLSINHVIEN
 
         private void UCQLSV_Load(object sender, EventArgs e)
         {
-            List<sinhvien> dsSinhVien = db.sinhviens.ToList();
-            dataGridView1.DataSource = dsSinhVien;
+            LoadSinhVien();
         }
         private void LoadSinhVien()
         {
             var ds = from sv in db.sinhviens
+                     where tuKhoaTimKiem == ""
+                           || sv.masv.Contains(tuKhoaTimKiem)
+                           || sv.hoten.Contains(tuKhoaTimKiem)
+                           || sv.malop.Contains(tuKhoaTimKiem)
+                           || sv.lophoc.tenlop.Contains(tuKhoaTimKiem)
+                     orderby sv.id
                      select new
                      {
                          sv.id,
@@ -35,7 +45,26 @@ namespace QLSINHVIEN
                          sv.malop
                      };
 
-            dataGridView1.DataSource = ds.ToList();
+            tongSoBanGhi = ds.Count();
+            tongSoTrang = (int)Math.Ceiling((double)tongSoBanGhi / soDongMoiTrang);
+
+            if (tongSoTrang == 0)
+            {
+                tongSoTrang = 1;
+            }
+
+            if (trangHienTai < 1)
+            {
+                trangHienTai = 1;
+            }
+
+            if (trangHienTai > tongSoTrang)
+            {
+                trangHienTai = tongSoTrang;
+            }
+
+            dataGridView1.DataSource = ds.Skip((trangHienTai - 1) * soDongMoiTrang).Take(soDongMoiTrang).ToList();
+            label7.Text = "Trang " + trangHienTai + "/" + tongSoTrang + " | " + tongSoBanGhi + " bản ghi";
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -176,6 +205,38 @@ namespace QLSINHVIEN
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            tuKhoaTimKiem = txt_search.Text.Trim();
+            trangHienTai = 1;
+            LoadSinhVien();
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            trangHienTai = 1;
+            LoadSinhVien();
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (trangHienTai > 1)
+            {
+                trangHienTai--;
+                LoadSinhVien();
+            }
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (trangHienTai < tongSoTrang)
+            {
+                trangHienTai++;
+                LoadSinhVien();
+            }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            trangHienTai = tongSoTrang;
+            LoadSinhVien();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
