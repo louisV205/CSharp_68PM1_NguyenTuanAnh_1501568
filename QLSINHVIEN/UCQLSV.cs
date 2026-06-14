@@ -10,6 +10,7 @@ namespace QLSINHVIEN
     public partial class UCQLSV : UserControl
     {
         databaseDataContext db = new databaseDataContext();
+        int idSinhVienDangChon = 0;
         public UCQLSV()
         {
             InitializeComponent();
@@ -73,6 +74,27 @@ namespace QLSINHVIEN
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+            if (row.IsNewRow || row.Cells["id"].Value == null)
+            {
+                return;
+            }
+
+            idSinhVienDangChon = Convert.ToInt32(row.Cells["id"].Value);
+            txt_mssv.Text = row.Cells["masv"].Value.ToString();
+            txt_name.Text = row.Cells["hoten"].Value.ToString();
+            date_ngaysinh.Value = Convert.ToDateTime(row.Cells["ngaysinh"].Value);
+            box_gioitinh.Text = row.Cells["gioitinh"].Value.ToString();
+            box_lophoc.SelectedValue = row.Cells["malop"].Value.ToString();
         }
         private void LoadLopHoc()
         {
