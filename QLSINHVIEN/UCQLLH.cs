@@ -496,7 +496,21 @@ namespace QLSINHVIEN
         }
         public void button10_Click(object sender, EventArgs e)
         {
-            loadUC(new UCQLSV());
+            if (idLopDangChon == 0)
+            {
+                MessageBox.Show("Vui lòng chọn lớp học cần xem danh sách sinh viên");
+                return;
+            }
+
+            string malop = txt_ma_lop.Text.Trim();
+
+            if (malop == "")
+            {
+                MessageBox.Show("Không tìm thấy mã lớp");
+                return;
+            }
+
+            loadUC(new UCQLSV(malop));
         }
 
         private void textBox2_TextChanged_2(object sender, EventArgs e)

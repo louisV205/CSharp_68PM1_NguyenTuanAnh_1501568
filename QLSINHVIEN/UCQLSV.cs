@@ -16,10 +16,17 @@ namespace QLSINHVIEN
         int tongSoTrang = 1;
         int tongSoBanGhi = 0;
         string tuKhoaTimKiem = "";
+        string maLopDangXem = "";
         public UCQLSV()
         {
             InitializeComponent();
             LoadLopHoc();
+        }
+        public UCQLSV(string malop) : this()
+        {
+            maLopDangXem = malop;
+            txt_search.Text = malop;
+            box_lophoc.SelectedValue = malop;
         }
 
         private void UCQLSV_Load(object sender, EventArgs e)
@@ -29,11 +36,12 @@ namespace QLSINHVIEN
         private void LoadSinhVien()
         {
             var ds = from sv in db.sinhviens
-                     where tuKhoaTimKiem == ""
-                           || sv.masv.Contains(tuKhoaTimKiem)
-                           || sv.hoten.Contains(tuKhoaTimKiem)
-                           || sv.malop.Contains(tuKhoaTimKiem)
-                           || sv.lophoc.tenlop.Contains(tuKhoaTimKiem)
+                     where (maLopDangXem == "" || sv.malop == maLopDangXem)
+                           && (tuKhoaTimKiem == ""
+                               || sv.masv.Contains(tuKhoaTimKiem)
+                               || sv.hoten.Contains(tuKhoaTimKiem)
+                               || sv.malop.Contains(tuKhoaTimKiem)
+                               || sv.lophoc.tenlop.Contains(tuKhoaTimKiem))
                      orderby sv.id
                      select new
                      {
