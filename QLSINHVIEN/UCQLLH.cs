@@ -14,11 +14,199 @@ namespace QLSINHVIEN
     public partial class UCQLLH : UserControl
     {
         databaseDataContext db = new databaseDataContext();
+        int idLopDangChon = 0;
         public UCQLLH()
         {
             InitializeComponent();
-            List<lophoc> dsLopHoc = db.lophocs.ToList();
-            dataGridView1.DataSource = dsLopHoc;    
+            txt_id_lop.ReadOnly = true;
+            loadlop();
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string malop = txt_ma_lop.Text.Trim();
+                string tenlop = txt_ten_lop.Text.Trim();
+                string ghichu = txt_ghichu_lop.Text.Trim();
+
+                if (malop == "")
+                {
+                    MessageBox.Show("Vui lòng nhập mã lớp");
+                    return;
+                }
+
+                if (tenlop == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tên lớp");
+                    return;
+                }
+
+                bool trungMaLop = db.lophocs.Any(l => l.malop == malop);
+
+                if (trungMaLop)
+                {
+                    MessageBox.Show("Mã lớp đã tồn tại");
+                    return;
+                }
+
+                lophoc lh = new lophoc();
+                lh.malop = malop;
+                lh.tenlop = tenlop;
+                lh.ghichu = ghichu;
+
+                db.lophocs.InsertOnSubmit(lh);
+                db.SubmitChanges();
+
+                loadlop();
+                ClearFormLopHoc();
+
+                MessageBox.Show("Thêm thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (idLopDangChon == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn lớp học cần sửa");
+                    return;
+                }
+
+                string malop = txt_ma_lop.Text.Trim();
+                string tenlop = txt_ten_lop.Text.Trim();
+                string ghichu = txt_ghichu_lop.Text.Trim();
+
+                if (malop == "")
+                {
+                    MessageBox.Show("Vui lòng nhập mã lớp");
+                    return;
+                }
+
+                if (tenlop == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tên lớp");
+                    return;
+                }
+
+                lophoc lh = db.lophocs.SingleOrDefault(l => l.id == idLopDangChon);
+
+                if (lh == null)
+                {
+                    MessageBox.Show("Không tìm thấy lớp học cần sửa");
+                    return;
+                }
+
+                bool trungMaLop = db.lophocs.Any(l => l.malop == malop && l.id != idLopDangChon);
+
+                if (trungMaLop)
+                {
+                    MessageBox.Show("Mã lớp đã tồn tại");
+                    return;
+                }
+
+                lh.malop = malop;
+                lh.tenlop = tenlop;
+                lh.ghichu = ghichu;
+
+                db.SubmitChanges();
+                loadlop();
+
+                MessageBox.Show("Sửa thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (idLopDangChon == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn lớp học cần xóa");
+                    return;
+                }
+
+                lophoc lh = db.lophocs.SingleOrDefault(l => l.id == idLopDangChon);
+
+                if (lh == null)
+                {
+                    MessageBox.Show("Không tìm thấy lớp học cần xóa");
+                    return;
+                }
+
+                bool lopDangCoSinhVien = db.sinhviens.Any(s => s.malop == lh.malop);
+
+                if (lopDangCoSinhVien)
+                {
+                    MessageBox.Show("Lớp học đang có sinh viên, không thể xóa");
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa lớp học này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                db.lophocs.DeleteOnSubmit(lh);
+                db.SubmitChanges();
+
+                loadlop();
+                ClearFormLopHoc();
+
+                MessageBox.Show("Xóa thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            ClearFormLopHoc();
+            loadlop();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+            if (row.IsNewRow || row.Cells["id"].Value == null)
+            {
+                return;
+            }
+
+            idLopDangChon = Convert.ToInt32(row.Cells["id"].Value);
+            txt_id_lop.Text = row.Cells["id"].Value.ToString();
+            txt_ma_lop.Text = row.Cells["malop"].Value.ToString();
+            txt_ten_lop.Text = row.Cells["tenlop"].Value.ToString();
+            txt_ghichu_lop.Text = row.Cells["ghichu"].Value == null ? "" : row.Cells["ghichu"].Value.ToString();
+        }
+
+        private void ClearFormLopHoc()
+        {
+            idLopDangChon = 0;
+            txt_id_lop.Clear();
+            txt_ma_lop.Clear();
+            txt_ten_lop.Clear();
+            txt_ghichu_lop.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -273,7 +461,7 @@ namespace QLSINHVIEN
 
         private void UCQLLH_Load(object sender, EventArgs e)
         {
-
+            loadlop();
         }
 
         private void groupBox1_Enter_2(object sender, EventArgs e)
