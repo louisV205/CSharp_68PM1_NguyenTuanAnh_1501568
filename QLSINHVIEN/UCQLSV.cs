@@ -135,6 +135,48 @@ namespace QLSINHVIEN
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (idSinhVienDangChon == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn sinh viên cần xóa");
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa sinh viên này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                sinhvien sv = db.sinhviens.SingleOrDefault(s => s.id == idSinhVienDangChon);
+
+                if (sv == null)
+                {
+                    MessageBox.Show("Không tìm thấy sinh viên cần xóa");
+                    return;
+                }
+
+                db.sinhviens.DeleteOnSubmit(sv);
+                db.SubmitChanges();
+
+                idSinhVienDangChon = 0;
+                txt_mssv.Clear();
+                txt_name.Clear();
+                box_gioitinh.SelectedIndex = -1;
+                box_lophoc.SelectedIndex = -1;
+                LoadSinhVien();
+
+                MessageBox.Show("Xóa thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
