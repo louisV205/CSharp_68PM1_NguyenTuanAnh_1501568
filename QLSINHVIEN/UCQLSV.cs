@@ -65,6 +65,76 @@ namespace QLSINHVIEN
 
 
         }
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (idSinhVienDangChon == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn sinh viên cần sửa");
+                    return;
+                }
+
+                string masv = txt_mssv.Text.Trim();
+                string hoten = txt_name.Text.Trim();
+                string gioitinh = box_gioitinh.Text;
+
+                if (masv == "")
+                {
+                    MessageBox.Show("Vui lòng nhập mã sinh viên");
+                    return;
+                }
+
+                if (hoten == "")
+                {
+                    MessageBox.Show("Vui lòng nhập họ tên");
+                    return;
+                }
+
+                if (gioitinh == "")
+                {
+                    MessageBox.Show("Vui lòng chọn giới tính");
+                    return;
+                }
+
+                if (box_lophoc.SelectedValue == null)
+                {
+                    MessageBox.Show("Vui lòng chọn lớp học");
+                    return;
+                }
+
+                sinhvien sv = db.sinhviens.SingleOrDefault(s => s.id == idSinhVienDangChon);
+
+                if (sv == null)
+                {
+                    MessageBox.Show("Không tìm thấy sinh viên cần sửa");
+                    return;
+                }
+
+                bool trungMaSinhVien = db.sinhviens.Any(s => s.masv == masv && s.id != idSinhVienDangChon);
+
+                if (trungMaSinhVien)
+                {
+                    MessageBox.Show("Mã sinh viên đã tồn tại");
+                    return;
+                }
+
+                sv.masv = masv;
+                sv.hoten = hoten;
+                sv.gioitinh = gioitinh;
+                sv.ngaysinh = date_ngaysinh.Value;
+                sv.malop = box_lophoc.SelectedValue.ToString();
+
+                db.SubmitChanges();
+                LoadSinhVien();
+
+                MessageBox.Show("Sửa thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
